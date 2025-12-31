@@ -1,0 +1,13 @@
+service: "service:EnergyService"  # Format -> nom_du_fichier:nom_de_la_classe
+labels:
+  project: seattle_energy_efficiency
+  owner: mcourte
+include:
+  - "service.py"  # Ton fichier de logique API
+python:
+  packages:
+    - scikit-learn==1.3.2  # Vérifie ta version exacte avec pip show scikit-learn
+    - pandas
+    - pydantic
+    - bentoml
+  
