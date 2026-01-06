@@ -22,7 +22,7 @@ Extraire l'ensemble des fichiers dans le dossier où vous souhaitez stocker le p
 
 ### Installer Python et ouvrir le terminal
 
-Télécharger [Python](https://www.python.org/downloads/) et [installer-le](https://fr.wikihow.com/installer-Python)  
+Téléchargez [Python](https://www.python.org/downloads/) et [installez-le](https://fr.wikihow.com/installer-Python)  
 
 Ouvrir le terminal de commande :
 
@@ -63,15 +63,20 @@ jupyter notebook nettoyage_analyse_DF.ipynb
 ```
 
 ### Déploiement de l'API
-1. Construisez le service BentoML :
+
+2. Placez vous dans le dossier /api :
+   ```bash
+   cd api
+   ```
+2. Construisez le service BentoML :
    ```bash
    bentoml build
    ```
-2. Démarrez le serveur BentoML :
+3. Démarrez le serveur BentoML :
    ```bash
    bentoml serve service:svc
    ```
-3. Testez l'API avec un outil comme Postman ou curl.
+4. Testez l'API avec un outil comme Postman ou curl.
 
 ## Auteur
 Ce projet a été réalisé dans le cadre du parcours Data Engineer d'OpenClassrooms.
