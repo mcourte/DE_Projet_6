@@ -87,7 +87,27 @@ Le "Bento" regroupe le code, le modèle et les dépendances dans une unité prê
 ```
 bentoml build
 ```
+  
+### 4. Tests et Validation de l'API (Local)  
+Avant le déploiement, il est recommandé de tester l'API localement pour vérifier la validation Pydantic.  
+  
+Démarrer le serveur :  
+```
+cd api
+bentoml serve service:EnergyService --reload
+```
+L'interface Swagger est alors accessible sur : [localhost](http://localhost:3000)  
 
+-Scénarios de test de validation :  
+
+  
+   - Validation de type : Envoyer une chaîne de caractères pour une surface déclenche une erreur 422.  
+  
+   - Validation de plage : Une année de construction inférieure à 1850 est automatiquement rejetée.
+  
+   - Intégrité : L'absence de colonnes requises par le modèle (ex: ComplianceStatus) est signalée immédiatement.
+
+    
 ## Déploiement Azure (Workflow Industriel)
 En raison de restrictions de sécurité sur le poste de travail professionnel (absence de droits administrateur pour Docker/WSL), le déploiement est réalisé via Azure Container Registry (ACR) en mode Cloud Build.
 
