@@ -1,12 +1,9 @@
 import bentoml
 from pydantic import BaseModel, Field
 import pandas as pd
-
-# Charger le modèle (le Pipeline complet avec preprocessor)
 model = bentoml.sklearn.load_model("energy_gb_model:latest")
 
-# Liste ordonnée des colonnes utilisée lors du .fit()
-# (Remplace par ta liste exacte 'features_to_keep')
+
 FEATURES_ORDER = [
     'BuildingType', 'PrimaryPropertyType', 'Neighborhood', 'YearBuilt',
     'NumberofBuildings', 'NumberofFloors', 'PropertyGFATotal',
@@ -49,7 +46,7 @@ class EnergyInput(BaseModel):
 
     model_config = {
         "extra": "forbid",
-        "populate_by_name": True  # Permet d'utiliser à la fois le nom Python et l'Alias
+        "populate_by_name": True  
     }
 
 @bentoml.service(resources={"cpu": "1"})
@@ -57,14 +54,10 @@ class EnergyService:
     
     @bentoml.api
     def predict(self, data: EnergyInput) -> dict:
-        # AJOUT DE by_alias=True ICI :
-        # Cela transforme 'PropertyGFABuilding_s' en 'PropertyGFABuilding(s)'
         df = pd.DataFrame([data.model_dump(by_alias=True)])
         
-        # Maintenant, 'PropertyGFABuilding(s)' existe bien dans le df !
         df = df[FEATURES_ORDER]
         
-        # Prédiction
         prediction = model.predict(df)
         
         return {
