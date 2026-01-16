@@ -34,7 +34,6 @@ class EnergyInput(BaseModel):
     LargestPropertyUseTypeGFA: float = Field(..., ge=0)
     SecondLargestPropertyUseTypeGFA: float = Field(default=0, ge=0)
     ThirdLargestPropertyUseTypeGFA: float = Field(default=0, ge=0)
-
     # Variables catégorielles
     BuildingType: str
     PrimaryPropertyType: str
