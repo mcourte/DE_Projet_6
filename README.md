@@ -147,5 +147,50 @@ JSON
   }  
 }  
 ```
+  
+🚀 Récapitulatif du Déploiement Cloud (Pipeline MLOps)  
+
+1. Packaging avec BentoML  
+
+Objectif : Standardiser le modèle et ses dépendances.  
+  
+Action : Création d'un fichier bentofile.yaml incluant le modèle entraîné, le service API (service.py) et les bibliothèques nécessaires (requirements.txt).  
+  
+Résultat : Génération d'un Bento, une archive prête pour la production.  
+  
+2. Containerisation avec Docker  
+  
+Objectif : Créer une image isolée capable de tourner sur n'importe quel serveur.  
+  
+Action : Utilisation de la commande bentoml containerize pour transformer le Bento en une image Docker.  
+  
+Validation : Test local via docker run sur le port 3000 pour vérifier que l'API répond correctement aux requêtes POST.  
+  
+3. Infrastructure Google Cloud Platform (GCP)  
+
+Objectif : Rendre l'API accessible via une URL sécurisée (HTTPS).  
+  
+Configuration :  
+  
+Création d'un projet GCP : seattle-energy-predictor.
+  
+Configuration du gcloud CLI en local.  
+  
+Activation des API Artifact Registry (stockage) et Cloud Run (exécution).  
+  
+Déploiement :  
+  
+Tagging et Push de l'image Docker vers Google Artifact Registry.  
+  
+Déploiement sur Cloud Run avec l'option --allow-unauthenticated pour permettre l'accès au jury.  
+  
+
+4. Nettoyage et Optimisation des Coûts  
+  
+Action : Suppression du service et de l'image après validation des tests.  
+  
+Justification : Application des bonnes pratiques de gestion des ressources Cloud (fin de session de test).  
+  
+  
 ## Auteur
 Ce projet a été réalisé par mcourte dans le cadre du parcours Data Engineer d'OpenClassrooms.
