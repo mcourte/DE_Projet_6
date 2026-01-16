@@ -1,0 +1,14 @@
+service: "service:EnergyService"
+labels:
+  project: seattle_energy_efficiency
+  owner: mcourte
+include:
+  - "service.py"
+models:
+  - energy_gb_model:latest  
+python:
+  packages:
+    - scikit-learn==1.7.2
+    - pandas
+    - pydantic
+    - bentoml
