@@ -148,48 +148,48 @@ JSON
 }  
 ```
   
-🚀 Récapitulatif du Déploiement Cloud (Pipeline MLOps)  
+## Récapitulatif du Déploiement Cloud (Pipeline MLOps)  
 
-1. Packaging avec BentoML  
+### 1. Packaging avec BentoML  
 
-Objectif : Standardiser le modèle et ses dépendances.  
+**Objectif** : Standardiser le modèle et ses dépendances.  
   
-Action : Création d'un fichier bentofile.yaml incluant le modèle entraîné, le service API (service.py) et les bibliothèques nécessaires (requirements.txt).  
+**Action** : Création d'un fichier bentofile.yaml incluant le modèle entraîné, le service API (service.py) et les bibliothèques nécessaires (requirements.txt).  
   
-Résultat : Génération d'un Bento, une archive prête pour la production.  
+**Résultat** : Génération d'un Bento, une archive prête pour la production.  
   
-2. Containerisation avec Docker  
+### 2. Containerisation avec Docker  
   
-Objectif : Créer une image isolée capable de tourner sur n'importe quel serveur.  
+**Objectif** : Créer une image isolée capable de tourner sur n'importe quel serveur.  
   
-Action : Utilisation de la commande bentoml containerize pour transformer le Bento en une image Docker.  
+**Action** : Utilisation de la commande bentoml containerize pour transformer le Bento en une image Docker.  
   
-Validation : Test local via docker run sur le port 3000 pour vérifier que l'API répond correctement aux requêtes POST.  
+**Validation** : Test local via docker run sur le port 3000 pour vérifier que l'API répond correctement aux requêtes POST.  
   
-3. Infrastructure Google Cloud Platform (GCP)  
+### 3. Infrastructure Google Cloud Platform (GCP)  
 
-Objectif : Rendre l'API accessible via une URL sécurisée (HTTPS).  
+**Objectif** : Rendre l'API accessible via une URL sécurisée (HTTPS).  
   
-Configuration :  
+**Configuration** :  
   
-Création d'un projet GCP : seattle-energy-predictor.
+*Création d'un projet GCP* : seattle-energy-predictor.
   
-Configuration du gcloud CLI en local.  
+*Configuration du gcloud CLI en local.*  
   
-Activation des API Artifact Registry (stockage) et Cloud Run (exécution).  
+*Activation des API Artifact Registry (stockage) et Cloud Run (exécution).*  
   
-Déploiement :  
+**Déploiement** :  
   
 Tagging et Push de l'image Docker vers Google Artifact Registry.  
   
 Déploiement sur Cloud Run avec l'option --allow-unauthenticated pour permettre l'accès au jury.  
   
 
-4. Nettoyage et Optimisation des Coûts  
+### 4. Nettoyage et Optimisation des Coûts  
   
-Action : Suppression du service et de l'image après validation des tests.  
+**Action** : Suppression du service et de l'image après validation des tests.  
   
-Justification : Application des bonnes pratiques de gestion des ressources Cloud (fin de session de test).  
+**Justification** : Application des bonnes pratiques de gestion des ressources Cloud (fin de session de test).  
   
   
 ## Auteur
